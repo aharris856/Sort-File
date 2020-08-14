@@ -1,6 +1,16 @@
 //sort file line by line using array list sorting and filewriter
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
 public class sort_file
 {
 	static String fileName = "";//filename
@@ -21,7 +31,7 @@ public class sort_file
 	public static void main(String[]args)throws Exception
 	{
 		//to ensure a file was input.
-		System.out.println("Enter the name of the file you would like to sort: ");
+		System.out.println("Enter the name of the file you would like to sort (ex unsortedFile.txt): ");
 		fileName = kb.nextLine();
 		setup(0);
 		//populate unsorted array
@@ -31,8 +41,12 @@ public class sort_file
 		infile.close();
 		Collections.sort(unsortedFile);
 		
-		/*i have had errors occur at random points in large files so i will be using a recursive 
-		method with a lot of try catches to ensure each line is added to the new file*/
+		/*i have had errors occur at random points in large files if i run with 
+		the command prompt rather than an IDE so i will be using a recursive 
+		method with a lot of try catches to ensure each line is added to the new file JUST in case
+		for your own use you can always remove some of the trycatches and error tracking you
+		find uncessesary (no issues like this yet on eclipse so far just in CMD prompt from a text editor).
+		you can also remove anything to do with progress tracking that you dont want to speed it up a tiny bit*/
 		int fileSize = unsortedFile.size();
 		int prog = fileSize/10;
 		boolean worthTracking = (prog>=1);
@@ -66,7 +80,6 @@ public class sort_file
 		System.out.println("Time taken: "+((double)(endTime-startTime)/1000)+"s");
 
 	}
-
 	//setup file names, etc
 	static void setup(int attempt)throws Exception
 	{
@@ -84,7 +97,6 @@ public class sort_file
 		if(f.exists())f.delete();
 		kb.close();
 	}
-
 	//transfering 
 	static void insert_sorted(String word, boolean add_e)throws Exception
 	{
@@ -108,14 +120,12 @@ public class sort_file
 			add_error = true;
 			insert_sorted(word, add_error);
 		}
-
 		try{
 			if(bw!=null)bw.close();
 		}catch(IOException e){
 			System.out.println("Error Closing BufferedWriter");
 			bwCloseError++;
 		}
-
 		try{
 			if(fw!=null)fw.close();
 		}catch(IOException e){
@@ -123,7 +133,6 @@ public class sort_file
 			fwCloseError++;
 		}		
 	}
-	
 	//check if a given String input ends with the String end
 	static boolean endsWith(String input, String end)throws Exception
 	{
@@ -134,9 +143,7 @@ public class sort_file
 		}
 		String ending = "";
 		for(int i = startPos; i < input.length(); i++)
-		{
 			ending +=input.charAt(i);
-		}
 		return ending.equals(".txt");
 	}
 }
