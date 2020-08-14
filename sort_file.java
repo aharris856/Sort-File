@@ -92,6 +92,11 @@ public class sort_file
 			setup(1);
 			return;
 		}
+		if(fileName.equalsIgnoreCase(newFileName)) {
+			System.out.println("ERROR: Your unsorted file: "+fileName+" cannot match the name of the file you would like to create... Try Again:");
+			setup(1);
+			return;
+		}
 		startTime = System.currentTimeMillis();//track time to sort and add new file
 		File f = new File(newFileName);
 		if(f.exists())f.delete();
