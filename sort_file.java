@@ -65,7 +65,7 @@ public class sort_file
 		try{
 			infile = new BufferedReader(new FileReader( newFileName ));
 		}catch(FileNotFoundException e){
-			System.out.println("ERROR: Your entered file to sort is empty... Exitting");
+			System.out.println("ERROR: Your file transfer failed... Exitting");
 			System.exit(0);
 		}
 		while(infile.ready())
