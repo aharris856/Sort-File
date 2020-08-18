@@ -1,7 +1,6 @@
 # Sort-File
-Create a new file that is a sorted version of the entered file.
-Has error reporting for certain things that is useful in larger file sorts if you're using a text editor + command prompt.
-I left the error reporting and progress tracking in even while running in Eclipse/IDEs and had no errors even show yet.
-This happened pretty frequently (about 1 word per run but it does correct the error) in the large_unsorted.txt file if I
-was using a text editor and running it via the command promt rather than from an IDE. You can always remove error tracking and 
-progress tracking if you wanna test it yourself. 
+note when running sort file if you  enter a file name that you wish for it to write
+the sorted file into it will remove the old file. So for example
+if i want it to sort 'unsorted_file.txt' and I wanna write to a file 
+called 'sorted_file.txt' if sorted file does not exist it will create a file for you
+however if it already exists it will delete the previous 'sorted_file.txt'
